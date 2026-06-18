@@ -53,11 +53,11 @@ class Book: LibraryItem {
     init(itemID: String, title: String, author: String, numberOfPages: Int, isBorrowed: Bool) {
         self.author = author
         self.numberOfPages = numberOfPages
-        super.init(itemID: "", title: "", isBorrowed: false)
+        super.init(itemID: itemID, title: title, isBorrowed: false)
     }
     
     override func displayInfo() {
-        print("Item ID: \(itemID)\nTitle: \(title)\nAuthor: \(author)\nNumber of pages: \(numberOfPages)\nBorrowed?: \(isBorrowed)")
+        print("Item ID: \(itemID)\nTitle: \(title)\nAuthor: \(author)\nNumber of pages: \(numberOfPages)\nBorrowed?: \(isBorrowed)\n")
     }
 }
 
@@ -65,13 +65,13 @@ class Magazine: LibraryItem {
     var issueNumber: Int
     var publicationMonth: String
     
-    init(issueNumber: Int, publicationMonth: String) {
+    init(itemID: String, title: String, issueNumber: Int, publicationMonth: String, isBorrowed: Bool) {
         self.issueNumber = issueNumber
         self.publicationMonth = publicationMonth
-        super.init(itemID: "", title: "", isBorrowed: false)
+        super.init(itemID: itemID, title: title, isBorrowed: false)
     }
     
     override func displayInfo() {
-        print("Item ID: \(itemID)\nTitle: \(title)\nIssue Number: \(issueNumber)\nPublication Month: \(publicationMonth)\nBorrowed?: \(isBorrowed)")
+        print("Item ID: \(itemID)\nTitle: \(title)\nIssue Number: \(issueNumber)\nPublication Month: \(publicationMonth)\nBorrowed?: \(isBorrowed)\n")
     }
 }

@@ -62,13 +62,60 @@ func addBook() {
 
 //Add Magazine
 func addMagazine() {
+    var itemID: String
+    var title: String
+    var issueNumber: Int
+    var publicationMonth: String
     
+    //Get item ID from user
+    repeat {
+        print("Enter Item ID:")
+        itemID = readLine()!
+        if itemID.isEmpty {
+            print("ID cannot be empty.\n")
+        }
+        
+        if libraryItems.contains(where: { $0.value.itemID == itemID }) {
+            print("Item with ID \(itemID) already exists.\n")
+        }
+    } while itemID.isEmpty
+    
+    //Get title from user
+    repeat {
+        print("Enter Title:")
+        title = readLine()!
+        if title.isEmpty {
+            print("Title cannot be empty.\n")
+        }
+    } while title.isEmpty
+    
+    //Get issue number from user
+    repeat {
+        issueNumber = getIntInput(prompt: "Enter Issue Number:")
+        if issueNumber <= 0 {
+            print("Issue number must be greater than 0.\n")
+        }
+    } while issueNumber <= 0
+    
+    //Get publication month from user
+    repeat {
+        print("Enter Publication Month:")
+        publicationMonth = readLine()!
+        if publicationMonth.isEmpty {
+            print("Publication month cannot be empty.\n")
+        }
+    } while publicationMonth.isEmpty
+    
+    let magazine = Magazine(itemID: itemID, title: title, issueNumber: issueNumber, publicationMonth: publicationMonth, isBorrowed: false)
+    
+    libraryItems[itemID] = magazine
+    print("Magazine added to library.")
 }
 
 //Display Library
 func displayLibrary() {
     if libraryItems.isEmpty {
-        print("Library is empty.")
+        print("Library is empty.\n")
         return
     }
     
@@ -81,7 +128,7 @@ func displayLibrary() {
 //Search Library by ID
 func searchLibrary() {
     if libraryItems.isEmpty {
-        print("Library is empty.")
+        print("Library is empty.\n")
         return
     }
     
@@ -91,24 +138,23 @@ func searchLibrary() {
         print("Enter ID of item to search for:")
         idToSearch = readLine() ?? ""
         if idToSearch.isEmpty {
-            print("ID cannot be empty.")
+            print("ID cannot be empty.\n")
         }
     } while idToSearch.isEmpty
     
     if !libraryItems.keys.contains(idToSearch) {
-        print("Item with ID \(idToSearch) not found.")
+        print("Item with ID \(idToSearch) not found.\n")
         return
     }
     
     let item = libraryItems[idToSearch]!
     item.displayInfo()
-    
 }
 
 //Borrow item by ID
 func borrowItem() {
     if libraryItems.isEmpty {
-        print("Library is empty.")
+        print("Library is empty.\n")
         return
     }
     
@@ -118,12 +164,12 @@ func borrowItem() {
         print("Enter ID of item to search for:")
         idToBorrow = readLine() ?? ""
         if idToBorrow.isEmpty {
-            print("ID cannot be empty.")
+            print("ID cannot be empty.\n")
         }
     } while idToBorrow.isEmpty
     
     if !libraryItems.keys.contains(idToBorrow) {
-        print("Item with ID \(idToBorrow) not found.")
+        print("Item with ID \(idToBorrow) not found.\n")
         return
     }
     
@@ -134,7 +180,7 @@ func borrowItem() {
 //Return item by ID
 func returnItem() {
     if libraryItems.isEmpty {
-        print("Library is empty.")
+        print("Library is empty.\n")
         return
     }
     
@@ -144,43 +190,41 @@ func returnItem() {
         print("Enter ID of item to search for:")
         idToReturn = readLine() ?? ""
         if idToReturn.isEmpty {
-            print("ID cannot be empty.")
+            print("ID cannot be empty.\n")
         }
     } while idToReturn.isEmpty
     
     if !libraryItems.keys.contains(idToReturn) {
-        print("Item with ID \(idToReturn) not found.")
+        print("Item with ID \(idToReturn) not found.\n")
         return
     }
     
     let item = libraryItems[idToReturn]!
     item.returnItem()
-    print("Item successfully returned.")
 }
 
 //Delete Item
 func deleteItem() {
     if libraryItems.isEmpty {
-        print("Library is empty.")
+        print("Library is empty.\n")
         return
     }
     
     var idToDelete: String
     
     repeat {
-        print("Enter ID of item to search for:")
+        print("Enter ID of item to delete:")
         idToDelete = readLine() ?? ""
         if idToDelete.isEmpty {
-            print("ID cannot be empty.")
+            print("ID cannot be empty.\n")
         }
     } while idToDelete.isEmpty
     
     if !libraryItems.keys.contains(idToDelete) {
-        print("Item with ID \(idToDelete) not found.")
+        print("Item with ID \(idToDelete) not found.\n")
         return
     }
     
-    let item = libraryItems[idToDelete]!
     libraryItems.removeValue(forKey: idToDelete)
-    print("Library item with ID: \(idToDelete) has been deleted.")
+    print("Library item with ID: \(idToDelete) has been deleted.\n")
 }
