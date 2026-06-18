@@ -11,7 +11,53 @@ var libraryItems: [String : LibraryItem] = [:]
 
 //Add Book
 func addBook() {
+    var itemID: String
+    var title: String
+    var author: String
+    var numberOfPages: Int
     
+    //Get item ID from user
+    repeat {
+        print("Enter Item ID:")
+        itemID = readLine()!
+        if itemID.isEmpty {
+            print("ID cannot be empty.\n")
+        }
+        
+        if libraryItems.contains(where: { $0.value.itemID == itemID }) {
+            print("Item with ID \(itemID) already exists.\n")
+        }
+    } while itemID.isEmpty
+    
+    //Get title from user
+    repeat {
+        print("Enter Title:")
+        title = readLine()!
+        if title.isEmpty {
+            print("Title cannot be empty.\n")
+        }
+    } while title.isEmpty
+    
+    //Get author from user
+    repeat {
+        print("Enter Author:")
+        author = readLine()!
+        if author.isEmpty {
+            print("Author cannot be empty.\n")
+        }
+    } while author.isEmpty
+    
+    //Get number of pages from user
+    repeat {
+        numberOfPages = getIntInput(prompt: "Enter Number of Pages:")
+        if numberOfPages <= 0 {
+            print("Number of pages must be greater than 0.\n")
+        }
+    } while numberOfPages <= 0
+    
+    let book = Book(itemID: itemID, title: title, author: author, numberOfPages: numberOfPages, isBorrowed: false)
+    libraryItems[itemID] = book
+    print("Book added to library.")
 }
 
 //Add Magazine

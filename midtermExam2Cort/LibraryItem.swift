@@ -50,7 +50,7 @@ class Book: LibraryItem {
     var author: String
     var numberOfPages: Int
     
-    init(author: String, numberOfPages: Int) {
+    init(itemID: String, title: String, author: String, numberOfPages: Int, isBorrowed: Bool) {
         self.author = author
         self.numberOfPages = numberOfPages
         super.init(itemID: "", title: "", isBorrowed: false)
