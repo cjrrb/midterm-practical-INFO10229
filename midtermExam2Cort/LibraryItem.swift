@@ -1,5 +1,5 @@
 //
-//  main.swift
+//  LibraryItem.swift
 //  midtermExam2Cort
 //
 //  Created by Cort Reynolds-Bolan on 2026-06-18.
@@ -7,7 +7,6 @@
 
 import Foundation
 
-var shouldExit = false
-while !shouldExit {
-    menu()
+class LibraryItem {
+    var itemID: 
 }
